@@ -17,7 +17,6 @@ def build_search_agent():
     return create_agent(
         llm = llm,
         tools= [web_search]
-        prompt=ChatPromptTemplate.from_template("Answer the following questions as best you can: {input}")
     )
 
 #2nd agent 
@@ -26,7 +25,6 @@ def build_reader_agent():
     return create_agent(
         llm = llm,
         tools = [scrape_url]
-        prompt=ChatPromptTemplate.from_template("Answer the following questions as best you can: {input}")
     )
 
 
