@@ -1,4 +1,4 @@
-from langchain.agents import create_agent
+from langchain.agents import create_react_agent
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -15,16 +15,18 @@ llm = ChatGroq(model="openai/gpt-oss-20b", temperature=0)
 #1st agent 
 def build_search_agent():
     return create_agent(
-        model = llm,
+        llm = llm,
         tools= [web_search]
+        prompt=ChatPromptTemplate.from_template("Answer the following questions as best you can: {input}")
     )
 
 #2nd agent 
 
 def build_reader_agent():
     return create_agent(
-        model = llm,
+        llm = llm,
         tools = [scrape_url]
+        prompt=ChatPromptTemplate.from_template("Answer the following questions as best you can: {input}")
     )
 
 
